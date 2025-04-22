@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="lv">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kino Kaste</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  Hello world
+  <h1>🎬 Kino Kaste</h1>
+
+  <div class="form-section">
+    <h2>Pievieno jaunu filmu:</h2>
+    <input type="text" id="movieInput" placeholder="Filmas nosaukums" />
+    <button id="addButton">Pievienot</button>
+  </div>
+
+  <div class="list-section">
+    <h2>Filmu saraksts:</h2>
+    <div id="movieList"></div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 

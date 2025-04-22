@@ -2,38 +2,34 @@ const movieList = document.getElementById('movieList');
 const movieInput = document.getElementById('movieInput');
 const genreSelect = document.getElementById('genreSelect');
 const addButton = document.getElementById('addButton');
+const searchInput = document.getElementById('searchInput');
 
-const movies = [
-  { title: 'Inception', genre: 'Darbība' },
-  { title: 'The Matrix', genre: 'Darbība' },
-  { title: 'The Notebook', genre: 'Romantika' },
-  { title: 'Titanic', genre: 'Romantika' },
-  { title: 'Get Out', genre: 'Šausmu filma' },
-  { title: 'The Conjuring', genre: 'Šausmu filma' },
-  { title: 'Superbad', genre: 'Komēdija' },
-  { title: 'Step Brothers', genre: 'Komēdija' },
-  { title: 'The Godfather', genre: 'Drāma' },
-  { title: 'Forrest Gump', genre: 'Drāma' },
-  { title: 'Avengers: Endgame', genre: 'Darbība' },
-  { title: 'A Quiet Place', genre: 'Šausmu filma' },
-  { title: 'Mean Girls', genre: 'Komēdija' },
-  { title: 'P.S. I Love You', genre: 'Romantika' },
-  { title: 'Joker', genre: 'Drāma' },
-  { title: 'The Hangover', genre: 'Komēdija' },
-  { title: 'Annabelle', genre: 'Šausmu filma' },
-  { title: 'Deadpool', genre: 'Darbība' },
-  { title: 'La La Land', genre: 'Romantika' },
-  { title: 'It', genre: 'Šausmu filma' },
-  { title: 'Fight Club', genre: 'Drāma' },
-  { title: 'The Proposal', genre: 'Romantika' }
+let movies = [
+  { title: 'Inception', genre: 'Darbība', watched: false },
+  { title: 'The Matrix', genre: 'Darbība', watched: false },
+  { title: 'The Notebook', genre: 'Romantika', watched: false },
+  { title: 'Titanic', genre: 'Romantika', watched: false },
+  { title: 'Get Out', genre: 'Šausmu filma', watched: false },
+  { title: 'The Conjuring', genre: 'Šausmu filma', watched: false },
+  { title: 'Superbad', genre: 'Komēdija', watched: false },
+  { title: 'Step Brothers', genre: 'Komēdija', watched: false },
+  { title: 'The Godfather', genre: 'Drāma', watched: false },
+  { title: 'Forrest Gump', genre: 'Drāma', watched: false }
 ];
 
-function renderMovies() {
+function renderMovies(filteredMovies = movies) {
   movieList.innerHTML = '';
-  movies.forEach(movie => {
+  filteredMovies.forEach((movie, index) => {
     const div = document.createElement('div');
     div.className = 'movie-card';
-    div.innerHTML = `<strong>${movie.title}</strong><div class="movie-genre">Žanrs: ${movie.genre}</div>`;
+    div.innerHTML = `
+      <strong>${movie.title}</strong>
+      <div class="movie-genre">Žanrs: ${movie.genre}</div>
+      <label>
+        <input type="checkbox" onchange="toggleWatched(${index})" ${movie.watched ? 'checked' : ''} /> Skatīts
+      </label>
+      ${movie.watched ? '<span class="watched-label">✔ Skatīts</span>' : ''}
+    `;
     movieList.appendChild(div);
   });
 }
@@ -42,7 +38,7 @@ function addMovie() {
   const title = movieInput.value.trim();
   const genre = genreSelect.value;
   if (title !== '' && genre !== '') {
-    movies.push({ title, genre });
+    movies.push({ title, genre, watched: false });
     movieInput.value = '';
     genreSelect.value = '';
     renderMovies();
@@ -59,6 +55,19 @@ function toggleForm(type) {
   }
 }
 
-addButton.addEventListener('click', addMovie);
+function toggleWatched(index) {
+  movies[index].watched = !movies[index].watched;
+  renderMovies();
+}
 
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.toLowerCase();
+  const filtered = movies.filter(m =>
+    m.title.toLowerCase().includes(query) ||
+    m.genre.toLowerCase().includes(query)
+  );
+  renderMovies(filtered);
+});
+
+addButton.addEventListener('click', addMovie);
 renderMovies();

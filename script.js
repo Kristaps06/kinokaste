@@ -71,3 +71,4 @@ searchInput.addEventListener('input', () => {
 
 addButton.addEventListener('click', addMovie);
 renderMovies();
+// hhh#

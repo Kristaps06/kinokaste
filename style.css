@@ -1,14 +1,39 @@
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f7f7f7;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #eef1f5;
   padding: 20px;
-  max-width: 800px;
+  max-width: 900px;
   margin: auto;
 }
 
 h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
+  color: #333;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.auth-form {
+  display: none;
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.auth-form input {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 1rem;
 }
 
 .form-section,
@@ -16,20 +41,22 @@ h1 {
   margin-bottom: 30px;
 }
 
-input[type="text"] {
+input[type="text"],
+select {
   padding: 10px;
   font-size: 1rem;
-  width: 70%;
+  width: 50%;
+  margin-right: 10px;
 }
 
 button {
   padding: 10px 15px;
   font-size: 1rem;
-  margin-left: 10px;
-  background-color: #4CAF50;
+  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .movie-card {
@@ -38,4 +65,10 @@ button {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 10px;
+}
+
+.movie-genre {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 5px;
 }

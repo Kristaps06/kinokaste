@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="lv">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kino Kaste</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div class="auth-container">
+    <button onclick="toggleForm('login')">Pieslēgties</button>
+    <button onclick="toggleForm('signup')">Reģistrēties</button>
+  </div>
+
+  <div id="authForms">
+    <div id="loginForm" class="auth-form">
+      <h3>Pieslēgties</h3>
+      <input type="email" placeholder="E-pasts">
+      <input type="password" placeholder="Parole">
+      <button>Pieslēgties</button>
+    </div>
+    <div id="signupForm" class="auth-form">
+      <h3>Reģistrēties</h3>
+      <input type="text" placeholder="Vārds">
+      <input type="email" placeholder="E-pasts">
+      <input type="password" placeholder="Parole">
+      <button>Reģistrēties</button>
+    </div>
+  </div>
+
   <h1>🎬 Kino Kaste</h1>
 
   <div class="form-section">
     <h2>Pievieno jaunu filmu:</h2>
     <input type="text" id="movieInput" placeholder="Filmas nosaukums" />
+    <select id="genreSelect">
+      <option value="">Izvēlies žanru</option>
+      <option value="Romantika">Romantika</option>
+      <option value="Šausmu filma">Šausmu filma</option>
+      <option value="Komēdija">Komēdija</option>
+      <option value="Drāma">Drāma</option>
+      <option value="Darbība">Darbība</option>
+    </select>
     <button id="addButton">Pievienot</button>
   </div>
 
@@ -24,5 +51,4 @@
 
   <script src="script.js"></script>
 </body>
-
 </html>
